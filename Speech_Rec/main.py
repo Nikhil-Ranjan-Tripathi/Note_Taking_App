@@ -2,10 +2,14 @@ import speech_recognition as sr
 import gtts
 from playsound import playsound
 import os
-
+from datetime import datetime
+from notion import NotionClient
 r = sr.Recognizer()
+token = "Your Taken ID"
+database_id = 'Your DB ID'
+client = NotionClient(token, database_id)
 
-ACTIVATION_COMMAND = 'hey nikhil'
+ACTIVATION_COMMAND = 'hey friday'
 
 def get_audio():
     with sr.Microphone() as source:
@@ -32,22 +36,3 @@ def play_sound(text):
         os.remove (tempfile)
     except AssertionError:
         print("Could not play sound")
-
-    
-
-
-if __name__ == '__main__':
-    while True:
-        a = get_audio()
-        command = audio_to_text(a)
-
-        if ACTIVATION_COMMAND in command.lower():
-            print("ACTIVATED")
-            play_sound("What can i do for you?")
-
-            note = get_audio()
-            note = audio_to_text(note)
-
-            if note:
-                play_sound(note)
-                
