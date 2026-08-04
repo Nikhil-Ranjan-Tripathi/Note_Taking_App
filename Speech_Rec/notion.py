@@ -34,4 +34,19 @@ class NotionClient:
                             "start": date,
                             "end": None
                         }
+            },
+            "Status": {
+                "rich_text": [
+                    {
+                        "text": {
+                            "content": status
+                        }
+                    }
+                ]
             }
+        }}
+
+        data = json.dumps(data)
+        res = requests.post(create_url, headers=self.headers, data=data)
+        print(res.status_code)
+        return res
