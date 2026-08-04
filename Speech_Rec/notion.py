@@ -12,3 +12,26 @@ class NotionClient:
             "Content-Type": "application/json",
             "Notion-Version": "2021-08-16"
         }
+
+    # read, update
+    def create_page(self, description, date, status):
+        create_url = 'https://api.notion.com/v1/pages'
+
+        data = {
+        "parent": { "database_id": self.database_id },
+        "properties": {
+            "Description": {
+                "title": [
+                    {
+                        "text": {
+                            "content": description
+                        }
+                    }
+                ]
+            },
+            "Date": {
+                "date": {
+                            "start": date,
+                            "end": None
+                        }
+            }
