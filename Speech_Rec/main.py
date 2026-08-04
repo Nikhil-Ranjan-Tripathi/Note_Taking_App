@@ -36,3 +36,13 @@ def play_sound(text):
         os.remove (tempfile)
     except AssertionError:
         print("Could not play sound")
+
+if __name__ == '__main__':
+    while True:
+        a = get_audio()
+        command = audio_to_text(a)
+        if ACTIVATION_COMMAND in command.lower():
+            print("ACTIVATED")
+            play_sound("What can i do for you?")
+            note = get_audio()
+            note = audio_to_text(note)
