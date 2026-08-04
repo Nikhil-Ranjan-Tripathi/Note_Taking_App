@@ -33,6 +33,8 @@ def play_sound(text):
     except AssertionError:
         print("Could not play sound")
 
+    
+
 
 if __name__ == '__main__':
     while True:
@@ -42,3 +44,10 @@ if __name__ == '__main__':
         if ACTIVATION_COMMAND in command.lower():
             print("ACTIVATED")
             play_sound("What can i do for you?")
+
+            note = get_audio()
+            note = audio_to_text(note)
+
+            if note:
+                play_sound(note)
+                
