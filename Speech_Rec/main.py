@@ -46,3 +46,9 @@ if __name__ == '__main__':
             play_sound("What can i do for you?")
             note = get_audio()
             note = audio_to_text(note)
+            if note:
+                play_sound(note)
+                now = datetime.now().astimezone().isoformat()
+                res = client.create_page(note, now, status="Active")
+                if res.status_code == 200:
+                    play_sound("Stored new item")
